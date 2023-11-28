@@ -1,3 +1,5 @@
+//The bird of Hermes is my name
+//Eating my wings to make me tame
 /*
 C++:
 Programa clasificador de sables laser con propiedades heredadas
@@ -10,18 +12,17 @@ y generar respuestas predeterminadas según el sable creado
 #include <iomanip>
 using namespace std;
 
-void Selector(string);
 
 void Intro();
 
 class Lightsaber{
     private:
-        string Crystal_Colour=NULL;
-        string Appearence=NULL;
-        string Structure=NULL;
-        string Concept=NULL;
-        string Moddifier=NULL;
-        string Properties=NULL;
+        string Crystal_Colour={""};
+        string Appearence={""};
+        string Structure={""};
+        string Concept={""};
+        string Moddifier={""};
+        string Properties={""};
     public:
         void W_CC(string);
         void W_App(string);
@@ -43,18 +44,50 @@ Lightsaber Lightwhip, Lightfoil, Blaster_Hybrid;
 Lightsaber Rifle, Siclke_Bladed, Train;
 Lightsaber Firesaber, Underwater, Dark_Saber;
 
-
+Lightsaber *Selector(string);
 
 Lightsaber Preset_OBJ();
 
+/*
+string Names[27]={
+"Sith saber",
+"Jedi saber",
+"Single bladed",
+"Curved hilt",
+"Shoto",
+"Guard shoto",
+"Double bladed",
+"Hinged double bladed",
+"Double bladed spinning",
+"Split saber",
+"Pike",
+"Dual phase",
+"Flickerphase blade",
+"Broadsaber",
+"Great lightsaber",
+"Crossguard",
+"Cane",
+"Short",
+"Lightwip",
+"Lightfoil",
+"Blaster hybrid",
+"Rifle",
+"Siclke bladed",
+"Train",
+"Firesaber",
+"Underwater",
+"Darksaber",
+};*/
 int main(){
     string Key = "0";
+    Lightsaber *Work=NULL;
     char Control;
     Intro();
     do{
         cout << "\n\nEnter the saber: ";
         getline(cin, Key);
-        Selector(Key);
+        Work=Selector(Key);
+        Work->Print();
         cout << "\n\nIf you want to know about another saber, put a 'R' in the console,\nelse put whatever you want.";
         cout << "Put the control letter: ";
         cin >> Control;
@@ -66,9 +99,9 @@ int main(){
 
 void Intro(){
     cout << "Welcome to the lightsaber database, here you can find the basic information about some of the lightsabers\n";
-    cout << "that were used by the force users of out far far away galaxy.\n\n";
+    cout << "that were used by the force users of our far far away galaxy.\n\n";
     cout << "To have access to the data, you must introduce in the console the name of the saber you want to know about.\n";
-    cout << "But be cautious, because if you make a mistake typing the name the files will not be shown to you\n\n";
+    cout << "But be cautious, because if you make a mistake typing the name, the files will not be shown to you\n\n";
     cout << "Here are the keywords to call the sabers: \n";
     cout << "Sith saber\n";
     cout << "Jedi saber\n";
@@ -96,169 +129,136 @@ void Intro(){
     cout << "Train\n";
     cout << "Firesaber\n";
     cout << "Underwater\n";
-    cout << "Dark saber\n";
-    cout << "Darth Maul saber\n";
-    cout << "Darth Vader saber\n";
-    cout << "Kylo Ren saber\n\n";
+    cout << "Darksaber\n";
+    cout << "\n";
     cout << "Also, we must warn you that this reader is sensitive to capital letters.";
 }
+//27
+/*
+int i=0
+for (i; i <= 27; i++){
+    if (key == Names[i]){
+        flag = 1;
+        break;
+    }
+}*/
 
-void Selector (string Key){
+Lightsaber *Selector(string Key){
     char Flag=0;
+    Lightsaber *Select=NULL;
     if(Key=="Sith saber"){
-        Sith_Saber Out;
-        Out.Data_SS();
+        Select=&Sith_Saber;
         Flag=1;
     }
     if(Key=="Jedi saber"){
-        Jedi_Saber Out;
-        Out.Data_JS();
+        Select=&Jedi_Saber;
         Flag=1;
     }
     if(Key=="Single bladed"){
-        Single_Bladed Out;
-        Out.Print_SB();
+        Select=&Single_Bladed;
         Flag=1;
     }
     if(Key=="Curved hilt"){
-        Curved_Hilt Out;
-        Out.Print_CH();
+        Select=&Curved_Hilt;
         Flag=1;
     }
     if(Key=="Shoto"){
-        Shoto Out;
-        Out.Print_S();
+        Select=&Shoto;
         Flag=1;
     }
     if(Key=="Guard shoto"){
-        Guard_Shoto Out;
-        Out.Print_GS();
+        Select=&Guard_Shoto;
         Flag=1;
     }
     if(Key=="Double bladed"){
-        Double_Bladed Out;
-        Out.Print_DB();
+        Select=&Double_Bladed;
         Flag=1;
     }
     if(Key=="Hinged double bladed"){
-        Hinged_Double_Bladed Out;
-        Out.Print_HDB();
+        Select=&Hinged_Double_Bladed;
         Flag=1;
     }
     if(Key=="Double bladed spinning"){
-        Double_Bladed_Spinning Out;
-        Out.Print_DBS();
+        Select=&Double_Bladed_Spinning;
         Flag=1;
     }
     if(Key=="Split saber"){
-        Split_Saber Out;
-        Out.Print_SS();
+        Select=&Split_Saber;
         Flag=1;
     }
     if(Key=="Pike"){
-        Pike Out;
-        Out.Print_PDS();
+        Select=&Pike;
         Flag=1;
     }
     if(Key=="Dual phase"){
-        Dual_Phase Out;
-        Out.Print_DP();
+        Select=&Dual_Phase;
         Flag=1;
     }
     if(Key=="Flickerphase blade"){
-        Flickerphase_Blade Out;
-        Out.Print_FB();
+        Select=&Flickerphase_Blade;
         Flag=1;
     }
     if(Key=="Broadsaber"){
-        Broadsaber Out;
-        Out.Print_B();
+        Select=&Broadsaber;
         Flag=1;
     }
     if(Key=="Great lightsaber"){
-        Great_Lightsaber Out;
-        Out.Print_GL();
+        Select=&Great_Lightsaber;
         Flag=1;
     }
     if(Key=="Crossguard"){
-        Crossguard Out;
-        Out.Print_C();
+        Select=&Crossguard;
         Flag=1;
     }
     if(Key=="Cane"){
-        Cane Out;
-        Out.Print_Ca();
+        Select=&Cane;
         Flag=1;
     }
     if(Key=="Short"){
-        Short Out;
-        Out.Print_S();
+        Select=&Short;
         Flag=1;
     }
     if(Key=="Lightwhip"){
-        Lightwhip Out;
-        Out.Print_W();
+        Select=&Lightwhip;
         Flag=1;
     }
     if(Key=="Lightfoil"){
-        Lightfoil Out;
-        Out.Print_L();
+        Select=&Lightfoil;
         Flag=1;
     }
     if(Key=="Blaster hybrid"){
-        Blaster_Hybrid Out;
-        Out.Print_BH();
+        Select=&Blaster_Hybrid;
         Flag=1;
     }
     if(Key=="Rifle"){
-        Rifle Out;
-        Out.Print_R();
+        Select=&Rifle;
         Flag=1;
     }
     if(Key=="Siclke bladed"){
-        Sickle_Bladed Out;
-        Out.Print_SBl();
+        Select=&Siclke_Bladed;
         Flag=1;
     }
     if(Key=="Train"){
-        Train Out;
-        Out.Print_T();
+        Select=&Train;
         Flag=1;
     }
     if(Key=="Firesaber"){
-        Firesaber Out;
-        Out.Print_F();
+        Select=&Firesaber;
         Flag=1;
     }
     if(Key=="Underwater"){
-        Underwater Out;
-        Out.Print_U();
+        Select=&Underwater;
         Flag=1;
     }
     if(Key=="Dark saber"){
-        Dark_Saber Out;
-        Out.Print_DS();
-        Flag=1;
-    }
-    if(Key=="Darth Maul saber"){
-        Darth_Maul_Saber Out;
-        Out.Print_DM();
-        Flag=1;
-    }
-    if(Key=="Darth Vader saber"){
-        Darth_Vader_Saber Out;
-        Out.Print_DV();
-        Flag=1;
-    }
-    if(Key=="Kylo Ren saber"){
-        Kylo_Ren_Saber Out;
-        Out.Print_KR();
+        Select=&Dark_Saber;
         Flag=1;
     }
     if(Flag==0){
         cout << "You just commited a war crime against the galaxy, a crime of insubordination.\n";
         cout << "Now, we are looking to you...\n";
     }
+    return Select;
 }
 
 Lightsaber Preset_OBJ(){
@@ -314,5 +314,94 @@ Lightsaber Preset_OBJ(){
     Broadsaber.W_Prp(INP);
     INP="It is a stronger, bigger and heavier lightsaber than the standar ones\n";
     Great_Lightsaber.W_Cpt(INP);
+    INP="Three blades making a cross\n";
+    Crossguard.W_Str(INP);
+    INP="It has two quillons acting as heatsinks\n";
+    Crossguard.W_Cpt(INP);
+    INP="It uses a cracked crystal\n";
+    Crossguard.W_Cpt(INP);
+    INP="It has a stronger blades\n";
+    Crossguard.W_Prp(INP);
+    INP="Cane cammo for lightsaber\n";
+    Cane.W_Cpt(INP);
+    INP="A shorther blade than a regular saber but still longer than the shoto\n";
+    Short.W_Cpt(INP);
+    INP="Modified blade with plasma shields that acts as a whip\n";
+    Lightwhip.W_Cpt(INP);
+    INP="A proto version of the shoto\n";
+    Lightfoil.W_Cpt(INP);
+    INP="Lightsaber with a hilt that allows to shoot with a blaster\n";
+    Blaster_Hybrid.W_Str(INP);
+    INP="A rifle that uses lightsabers as chambers for five powerful shots\n";
+    Rifle.W_Cpt(INP);
+    INP="It has its blade wielded making it a scimitar\n";
+    Siclke_Bladed.W_Mod(INP);
+    INP="It has a less lethal or directly a non lethal blade\n";
+    Train.W_Cpt(INP);
+    INP="It uses two kybern crystal\n";
+    Underwater.W_Str(INP);
+    INP="The crystals allows it to maintain its blade underwater\n";
+    Underwater.W_Prp(INP);
+    INP="Unstable blade core that spits energy in almost every impact\n";
+    Firesaber.W_Cpt(INP);
+    INP="It can explode in the hand of the user\n";
+    Firesaber.W_Prp(INP);
+    INP="It is a physic blade powered with the energy of a kybern crystal\n";
+    Dark_Saber.W_Str(INP);
+
+}
+
+void Lightsaber::W_CC(string INPUT){
+    Crystal_Colour=Crystal_Colour+INPUT;
+}
+
+void Lightsaber::W_App(string INPUT){
+    Appearence=Appearence+INPUT;
+}
+
+void Lightsaber::W_Str(string INPUT){
+    Structure=Structure+INPUT;
+}
+
+void Lightsaber::W_Cpt(string INPUT){
+    Concept=Concept+INPUT;
+}
+
+void Lightsaber::W_Mod(string INPUT){
+    Moddifier=Moddifier+INPUT;
+}
+
+void Lightsaber::W_Prp(string INPUT){
+    Properties=Properties+INPUT;
+}
+
+void Lightsaber::Clear(){
+    Crystal_Colour={""};
+    Appearence={""};
+    Structure={""};
+    Concept={""};
+    Moddifier={""};
+    Properties={""};
+}
+
+void Lightsaber::Print(){
+    if(Crystal_Colour!=""){
+        cout << "Crystal colour:\n" << Crystal_Colour;
+    }
+    if(Appearence!=""){
+        cout << "Appearence:\n" << Appearence;
+    }
+    if(Structure!=""){
+        cout << "Structure:\n" << Structure;
+    }
+    if(Concept!=""){
+        cout << "Conecpt:\n" << Concept;
+    }
+    if(Moddifier!=""){
+        cout << "Moddifier:\n" << Moddifier;
+    }
+    if(Properties!=""){
+        cout << "Properties:\n" << Properties;
+    }
 
 }
