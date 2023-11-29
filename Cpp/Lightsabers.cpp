@@ -46,7 +46,7 @@ Lightsaber Firesaber, Underwater, Dark_Saber;
 
 Lightsaber *Selector(string);
 
-Lightsaber Preset_OBJ();
+void Preset_OBJ();
 
 /*
 string Names[27]={
@@ -78,7 +78,9 @@ string Names[27]={
 "Underwater",
 "Darksaber",
 };*/
+/*
 int main(){
+    Preset_OBJ();
     string Key = "0";
     Lightsaber *Work=NULL;
     char Control;
@@ -94,6 +96,29 @@ int main(){
         fflush(stdin);
         cout << "\n";
     }while((Control == 'R')||(Control == 'r'));
+    return 0;
+}*/
+
+int main(){
+    string Key = "0";
+    Lightsaber *Work=NULL;
+    char Control;
+    Intro();
+    Preset_OBJ();
+    do{
+        cout << "\n\nEnter the saber: ";
+        getline(cin, Key);
+        Work=Selector(Key);
+        if (Work != NULL){
+            Work->Print();
+        }
+        cout << "\n\nIf you want to know about another saber, put a 'R' in the console,\nelse put whatever you want.";
+        cout << "Put the control letter: ";
+        cin >> Control;
+        fflush(stdin);
+        cout << "\n";
+    } while ((Control == 'R') || (Control == 'r'));
+
     return 0;
 }
 
@@ -131,7 +156,7 @@ void Intro(){
     cout << "Underwater\n";
     cout << "Darksaber\n";
     cout << "\n";
-    cout << "Also, we must warn you that this reader is sensitive to capital letters.";
+    cout << "Also, we must warn you that this reader is sensitive to capital letters.\n";
 }
 //27
 /*
@@ -250,7 +275,7 @@ Lightsaber *Selector(string Key){
         Select=&Underwater;
         Flag=1;
     }
-    if(Key=="Dark saber"){
+    if(Key=="Darksaber"){
         Select=&Dark_Saber;
         Flag=1;
     }
@@ -261,7 +286,7 @@ Lightsaber *Selector(string Key){
     return Select;
 }
 
-Lightsaber Preset_OBJ(){
+void Preset_OBJ(){
     string INP="Red\n";
     Sith_Saber.W_CC(INP);
     INP="Solid\n";
